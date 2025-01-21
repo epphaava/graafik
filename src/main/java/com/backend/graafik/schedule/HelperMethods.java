@@ -85,8 +85,11 @@ public class HelperMethods {
 
 
             List<Worker> workersCopy = new ArrayList<>();
-            for (int i = 0; i < scheduleMatrixOriginal[recorded.getShiftDate() + 1].length; i++) {
-                if (!scheduleMatrixOriginal[recorded.getShiftDate() + 1][i].getCategory().equals(Shift.KEELATUD) && !scheduleMatrix[recorded.getShiftDate() + 1][i].getCategory().equals(Shift.PUHKUS) && !scheduleMatrix[recorded.getShiftDate() + 1][i].getCategory().equals(Shift.KOOLITUS)) workersCopy.add(workers.get(i));
+            if (scheduleMatrixOriginal.length < recorded.getShiftDate() + 1) {
+                for (int i = 0; i < scheduleMatrixOriginal[recorded.getShiftDate() + 1].length; i++) {
+                    if (!scheduleMatrixOriginal[recorded.getShiftDate() + 1][i].getCategory().equals(Shift.KEELATUD) && !scheduleMatrix[recorded.getShiftDate() + 1][i].getCategory().equals(Shift.PUHKUS) && !scheduleMatrix[recorded.getShiftDate() + 1][i].getCategory().equals(Shift.KOOLITUS))
+                        workersCopy.add(workers.get(i));
+                }
             }
 
             unusedWorkers.put(recorded.getShiftDate() + 1, workersCopy);

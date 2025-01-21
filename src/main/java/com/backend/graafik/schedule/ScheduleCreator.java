@@ -18,17 +18,17 @@ public class ScheduleCreator {
     // Case 5 --> End of quarter is +2 ?
     public static void main(String[] args) {
 
-        int daysInMonth = 31;
-        int firstDayOfMonth = 3;
-        int fullTimeHours = 176;
-        List<Integer> holidays = new ArrayList<>(Arrays.asList(1,2,3,6));
+        int daysInMonth = 28;
+        int firstDayOfMonth = 6;
+        int fullTimeHours = 152;
+        List<Integer> holidays = new ArrayList<>(Arrays.asList(23));
 
         List<Worker> workersList = WorkerConverter.createWorkersList(fullTimeHours);
 
         List<RecordedShift> recordedShifts = new ArrayList<>();
         RecordedShift lastRecordedShift = new RecordedShift(0, workersList.getFirst(), 0);
 
-        boolean lastMonthOfQuarter = true;
+        boolean lastMonthOfQuarter = false;
 
         Shift[][] scheduleMatrixOriginal = AssignWorkerWishes.initializeScheduleMatrix(daysInMonth, workersList.size());
 
@@ -61,11 +61,11 @@ public class ScheduleCreator {
 
 
         // Step 5 kui rahval < -8h jääk siis vaatame kuhu saab neid assginida --> ja assgnima ainult tööpäevadle sest nv olemas juba
-        AssignExtraShifts.addExtraShifts(scheduleMatrix, daysInMonth, workersList, firstDayOfMonth);
+        AssignExtraShifts.addExtraShifts(scheduleMatrix, daysInMonth, workersList, firstDayOfMonth, holidays);
 
         // Step 6 if kvartaliviimane kuu ss lisa meetod et teha vajadusel 8h vahetus --> 10h vahetuseks
-        if (lastMonthOfQuarter) Quarter.QuarterBalance(scheduleMatrix, workersList);
-        else Month.MonthlyBalance(scheduleMatrix, workersList);
+        //if (lastMonthOfQuarter) Quarter.QuarterBalance(scheduleMatrix, workersList);
+        //else Month.MonthlyBalance(scheduleMatrix, workersList);
 
 
         // Deal with Edgecases

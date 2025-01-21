@@ -1,5 +1,6 @@
 package com.backend.graafik.model;
 
+
 public class Rule {
     public Shift Shift;
     public int Days;
