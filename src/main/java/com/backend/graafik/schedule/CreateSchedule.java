@@ -6,7 +6,8 @@ import com.backend.graafik.model.Shift;
 import com.backend.graafik.model.Worker;
 
 import java.time.YearMonth;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateSchedule {
     public static void main(String[] args) {
@@ -28,11 +29,6 @@ public class CreateSchedule {
             System.out.println("---");
         }
 
-
-
-
-
-
     }
 
     public static List<List<List<Integer>>> generateAllPossibleSchedules(ScheduleRequest scheduleRequest) {
@@ -50,62 +46,75 @@ public class CreateSchedule {
         for (int i = 0; i < daysInMonth; i++) {
             shiftsForWeekDays.add(shiftsForDay);
         }
-        List<Worker> workers = scheduleRequest.Workers;
 
         List<List<List<Integer>>> allCombinations = new ArrayList<>();
 
         // Recursively generate all combinations
-        generateCombinationsRecursive(workers.size(), shiftsForWeekDays, 0, new ArrayList<>(), allCombinations);
+        generateCombinationsRecursive(scheduleRequest, shiftsForWeekDays, 0, new ArrayList<>(), allCombinations);
 
         return allCombinations;
 
     }
 
-    private static void generateCombinationsRecursive(int workers, List<List<Shift>> shiftsForWeekDays, int dayIndex,
-                                                      List<List<Integer>> currentCombination, List<List<List<Integer>>> allCombinations) {
-        if (dayIndex == shiftsForWeekDays.size()) {
+    private static void generateCombinationsRecursive(ScheduleRequest scheduleRequest, List<List<Shift>> shiftsForWeekDays, int date,
+                                                      List<List<Integer>> currentSchedule, List<List<List<Integer>>> allCombinations) {
+        if (date == shiftsForWeekDays.size()) {
             // All days processed, add the combination
-            allCombinations.add(new ArrayList<>(currentCombination));
+            allCombinations.add(new ArrayList<>(currentSchedule));
             return;
         }
 
         // Get shift count for the current day
-        int shiftCount = shiftsForWeekDays.get(dayIndex).size();
+        int shiftCount = shiftsForWeekDays.get(date).size();
 
-        // Generate permutations of workers for the current shift count
-        List<List<Integer>> permutations = getPermutations(workers, shiftCount);
+        // Generate currentDayAllPossibleShiftAssignments of workers for the current shift count
+        List<List<Integer>> currentDayAllPossibleShiftAssignments = getPermutations(scheduleRequest, shiftCount);
 
-        for (List<Integer> perm : permutations) {
-            currentCombination.add(perm);
-            System.out.println(perm);
+        for (List<Integer> currentDayShiftAssignments : currentDayAllPossibleShiftAssignments) {
+
+
+            int assignmentRating = assignmentRating(scheduleRequest, currentSchedule, currentDayShiftAssignments, shiftsForWeekDays.getFirst(), date);
+
+            if (assignmentRating <= -100) continue;
+
+            currentSchedule.add(currentDayShiftAssignments);
+
             if (allCombinations.size() == 3) break;
-            generateCombinationsRecursive(workers, shiftsForWeekDays, dayIndex + 1, currentCombination, allCombinations);
-            currentCombination.removeLast();
+            generateCombinationsRecursive(scheduleRequest, shiftsForWeekDays, date + 1, currentSchedule, allCombinations);
+            currentSchedule.removeLast();
         }
     }
 
-    public static List<List<Integer>> getPermutations(int workers, int shiftCount) {
+    public static List<List<Integer>> getPermutations(ScheduleRequest scheduleRequest, int shiftCount) {
         List<List<Integer>> result = new ArrayList<>();
-        List<Integer> workerIndexes = new ArrayList<>();
-        for (int i = 0; i < workers; i++) {
-            workerIndexes.add(i);
-        }
-        permuteHelper(workerIndexes, shiftCount, new ArrayList<>(), result);
+
+        permuteHelper(scheduleRequest, shiftCount, new ArrayList<>(), result);
         return result;
     }
 
-    private static void permuteHelper(List<Integer> workers, int size, List<Integer> current, List<List<Integer>> result) {
-        if (current.size() == size) {
-            result.add(new ArrayList<>(current));
+    private static void permuteHelper(ScheduleRequest scheduleRequest, int shiftCount, List<Integer> currentCombination, List<List<Integer>> result) {
+        if (currentCombination.size() == shiftCount) {
+            result.add(new ArrayList<>(currentCombination));
             return;
         }
 
-        for (Integer worker : workers) {
-            if (!current.contains(worker)) {
-                current.add(worker);
-                permuteHelper(workers, size, current, result);
-                current.removeLast();
+        for (Worker worker : scheduleRequest.Workers) {
+            if (!currentCombination.contains(worker.getEmployeeId())) {
+                currentCombination.add(worker.getEmployeeId());
+                permuteHelper(scheduleRequest, shiftCount, currentCombination, result);
+                currentCombination.removeLast();
             }
+
         }
+    }
+
+    public static int assignmentRating(ScheduleRequest scheduleRequest, List<List<Integer>> currentSchedule, List<Integer> newAssignments, List<Shift> shifts, int date) {
+        // TODO
+        // get rating
+
+        // 2. worker requests
+        // 3. rules
+
+        return 0;
     }
 }
