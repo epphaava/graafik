@@ -13,150 +13,97 @@ public class WorkersList {
     private final List<Worker> workersList = new ArrayList<>();
 
     public WorkersList() {
-        // HELVE
-        List<Integer> helveVacationDays = new ArrayList<>();
-        ArrayList<Integer> helveDesiredVacationDays = new ArrayList<>(Arrays.asList(6, 7, 8));
-        HashMap<Integer, Shift> helveDesiredWorkDays = new HashMap<>();
-        List<Integer> helveSickDays = new ArrayList<>();
-        List<Integer> helveTrainingDays = new ArrayList<>();
-        Worker helve = new Worker(0, "Helve", 152, 1.0, 5, 0, helveVacationDays, helveDesiredVacationDays,
-                helveDesiredWorkDays, helveSickDays, helveTrainingDays);
-        workersList.add(helve);
+        // Liivi
+        List<Integer> liiviVacationDays = new ArrayList<>();
+        List<Integer> liiviDesiredVacationDays = new ArrayList<>();
+        HashMap<Integer, Shift> liiviDesiredWorkDays = new HashMap<>();
+        List<Integer> liiviSickDays = new ArrayList<>();
+        List<Integer> liiviTrainingDays = new ArrayList<>();
+        Worker liivi = new Worker(0, "Liivi", 168, 1.0, 0, 0, liiviVacationDays, liiviDesiredVacationDays,
+                liiviDesiredWorkDays, liiviSickDays, liiviTrainingDays);
+        workersList.add(liivi);
 
-        // KAI
-        List<Integer> kaiVacationDays = new ArrayList<>();
-        List<Integer> kaiDesiredVacationDays = new ArrayList<>(Arrays.asList(1,6,7,8,20,21,22,30,31));
-        HashMap<Integer, Shift> kaiDesiredWorkDays = new HashMap<>();
-        List<Integer> kaiSickDays = new ArrayList<>();
-        List<Integer> kaiTrainingDays = new ArrayList<>();
-        Worker kai = new Worker(1, "Kai", 152, 1.0, -4, 0, kaiVacationDays, kaiDesiredVacationDays, kaiDesiredWorkDays,
-                kaiSickDays, kaiTrainingDays);
-        workersList.add(kai);
+        // Rita
+        List<Integer> ritaVacationDays = new ArrayList<>();
+        List<Integer> ritaDesiredVacationDays = new ArrayList<>();
+        HashMap<Integer, Shift> ritaDesiredWorkDays = new HashMap<>();
+        List<Integer> ritaSickDays = new ArrayList<>();
+        List<Integer> ritaTrainingDays = new ArrayList<>();
+        Worker rita = new Worker(1, "Rita", 168, 1.0, 0, 0, ritaVacationDays, ritaDesiredVacationDays,
+                ritaDesiredWorkDays, ritaSickDays, ritaTrainingDays);
+        workersList.add(rita);
 
-        // KAJA
-        List<Integer> kajaVacationDays = new ArrayList<>();
-        List<Integer> kajaDesiredVacationDays = new ArrayList<>();
-        HashMap<Integer, Shift> kajaDesiredWorkDays = new HashMap<>();
-        List<Integer> kajaSickDays = new ArrayList<>();
-        List<Integer> kajaTrainingDays = new ArrayList<>();
-        Worker kaja = new Worker(2, "Kaja", 152, 1.0, -7, 0, kajaVacationDays, kajaDesiredVacationDays,
-                kajaDesiredWorkDays,
-                kajaSickDays, kajaTrainingDays);
-        workersList.add(kaja);
+        // Ingrid
+        List<Integer> ingridVacationDays = new ArrayList<>();
+        List<Integer> ingridDesiredVacationDays = new ArrayList<>();
+        HashMap<Integer, Shift> ingridDesiredWorkDays = new HashMap<>(Map.of(24, new Shift(24, Shift.PIKK_PÄEV)));
+        List<Integer> ingridSickDays = new ArrayList<>();
+        List<Integer> ingridTrainingDays = new ArrayList<>();
+        Worker ingrid = new Worker(2, "Ingrid", 168, 1.0, 0, 0, ingridVacationDays, ingridDesiredVacationDays,
+                ingridDesiredWorkDays, ingridSickDays, ingridTrainingDays);
+        workersList.add(ingrid);
 
-        // MARI-LIIS
-        List<Integer> mariliisVacationDays = new ArrayList<>();
-        List<Integer> mariliisDesiredVacationDays = new ArrayList<>(Arrays.asList(1,4,7,8,15,21,22,23,24,25,26,31));
-        HashMap<Integer, Shift> mariliisDesiredWorkDays = new HashMap<>();
-        List<Integer> mariliisSickDays = new ArrayList<>();
-        List<Integer> mariliisTrainingDays = new ArrayList<>();
-        Worker mariliis = new Worker(3, "Mari-Liis", 114, 0.75, -5, 0, mariliisVacationDays, mariliisDesiredVacationDays,
-                mariliisDesiredWorkDays, mariliisSickDays, mariliisTrainingDays);
-        workersList.add(mariliis);
+        // Monika
+        List<Integer> monikaVacationDays = new ArrayList<>();
+        List<Integer> monikaDesiredVacationDays = new ArrayList<>(Arrays.asList(12, 13, 14));
+        HashMap<Integer, Shift> monikaDesiredWorkDays = new HashMap<>(Map.of(24, new Shift(12, Shift.LÜHIKE_PÄEV)));
+        List<Integer> monikaSickDays = new ArrayList<>();
+        List<Integer> monikaTrainingDays = new ArrayList<>();
+        Worker monika = new Worker(3, "Monika", 168, 1.0, 0, 0, monikaVacationDays, monikaDesiredVacationDays,
+                monikaDesiredWorkDays, monikaSickDays, monikaTrainingDays);
+        workersList.add(monika);
 
+        // Tiiu
+        List<Integer> tiiuVacationDays = new ArrayList<>();
+        List<Integer> tiiuDesiredVacationDays = new ArrayList<>(Arrays.asList(7, 21, 22, 23));
+        HashMap<Integer, Shift> tiiuDesiredWorkDays = new HashMap<>();
+        List<Integer> tiiuSickDays = new ArrayList<>();
+        List<Integer> tiiuTrainingDays = new ArrayList<>();
+        Worker tiiu = new Worker(4, "Tiiu", 168, 1.0, 0, 0, tiiuVacationDays, tiiuDesiredVacationDays,
+                tiiuDesiredWorkDays, tiiuSickDays, tiiuTrainingDays);
+        workersList.add(tiiu);
 
-        // nadezda
-        List<Integer> nadezdaVacationDays = new ArrayList<>();
-        List<Integer> nadezdaDesiredVacationDays = new ArrayList<>();
-        HashMap<Integer, Shift> nadezdaDesiredWorkDays = new HashMap<>();
-        List<Integer> nadezdaSickDays = new ArrayList<>();
-        List<Integer> nadezdaTrainingDays = new ArrayList<>();
-        Worker nadezda = new Worker(4, "nadezda", 152-8, 1.0, 1, 8, nadezdaVacationDays, nadezdaDesiredVacationDays,
-                nadezdaDesiredWorkDays,
-                nadezdaSickDays, nadezdaTrainingDays);
-        workersList.add(nadezda);
+        // Kristel
+        List<Integer> kristelVacationDays = new ArrayList<>();
+        List<Integer> kristelDesiredVacationDays = new ArrayList<>();
+        HashMap<Integer, Shift> kristelDesiredWorkDays = new HashMap<>();
+        List<Integer> kristelSickDays = new ArrayList<>();
+        List<Integer> kristelTrainingDays = new ArrayList<>();
+        Worker kristel = new Worker(5, "Kristel", 168, 1.0, 0, 0, kristelVacationDays, kristelDesiredVacationDays,
+                kristelDesiredWorkDays, kristelSickDays, kristelTrainingDays);
+        workersList.add(kristel);
 
-        // Olga
-        List<Integer> olgaVacationDays = new ArrayList<>(Arrays.asList(9,10,11,12,13,14,15));
-        List<Integer> olgaDesiredVacationDays = new ArrayList<>(Arrays.asList(7,8,31));
-        HashMap<Integer, Shift> olgaDesiredWorkDays = new HashMap<>();
-        List<Integer> olgaSickDays = new ArrayList<>();
-        List<Integer> olgaTrainingDays = new ArrayList<>();
-        Worker olga = new Worker(5, "Olga", 152, 1.0, 0, 0, olgaVacationDays, olgaDesiredVacationDays,
-                olgaDesiredWorkDays,
-                olgaSickDays, olgaTrainingDays);
-        workersList.add(olga);
+        // Kärolin
+        List<Integer> kärolinVacationDays = new ArrayList<>();
+        List<Integer> kärolinDesiredVacationDays = new ArrayList<>();
+        HashMap<Integer, Shift> kärolinDesiredWorkDays = new HashMap<>();
+        List<Integer> kärolinSickDays = new ArrayList<>();
+        List<Integer> kärolinTrainingDays = new ArrayList<>();
+        Worker kärolin = new Worker(6, "Kärolin", 168, 1.0, 0, 0, kärolinVacationDays, kärolinDesiredVacationDays,
+                kärolinDesiredWorkDays, kärolinSickDays, kärolinTrainingDays);
+        workersList.add(kärolin);
 
-        // PÄRJA
-        List<Integer> pärjaVacationDays = new ArrayList<>(Arrays.asList(19,20,21,22,23,24,25,26,27,28,29,30,31));
-        List<Integer> pärjaDesiredVacationDays = new ArrayList<>();
-        HashMap<Integer, Shift> pärjaDesiredWorkDays = new HashMap<>(Map.of(
-                4, new Shift(24, Shift.OSAKOND),
-                9, new Shift(24, Shift.OSAKOND),
-                12, new Shift(24, Shift.OSAKOND),
-                16, new Shift(24,Shift.OSAKOND),
-                18, new Shift(8,Shift.OSAKOND)));
-        List<Integer> pärjaSickDays = new ArrayList<>();
-        List<Integer> pärjaTrainingDays = new ArrayList<>();
-        Worker pärja = new Worker(6, "Pärja", 152, 1.0, -6, 0, pärjaVacationDays, pärjaDesiredVacationDays,
-                pärjaDesiredWorkDays, pärjaSickDays, pärjaTrainingDays);
-        workersList.add(pärja);
+        // Liina
+        List<Integer> liinaVacationDays = new ArrayList<>();
+        List<Integer> liinaDesiredVacationDays = new ArrayList<>();
+        HashMap<Integer, Shift> liinaDesiredWorkDays = new HashMap<>();
+        List<Integer> liinaSickDays = new ArrayList<>();
+        List<Integer> liinaTrainingDays = new ArrayList<>();
+        Worker liina = new Worker(7, "Liina", 168, 1.0, 0, 0, liinaVacationDays, liinaDesiredVacationDays,
+                liinaDesiredWorkDays, liinaSickDays, liinaTrainingDays);
+        workersList.add(liina);
 
-        // RIMMA
-        List<Integer> rimmaVacationDays = new ArrayList<>();
-        List<Integer> rimmaDesiredVacationDays = new ArrayList<>(Arrays.asList(6,24,31));
-        HashMap<Integer, Shift> rimmaDesiredWorkDays = new HashMap<>();
-        List<Integer> rimmaSickDays = new ArrayList<>();
-        List<Integer> rimmaTrainingDays = new ArrayList<>();
-        Worker rimma = new Worker(7, "Rimma", 152, 1.0, -2, 8, rimmaVacationDays, rimmaDesiredVacationDays,
-                rimmaDesiredWorkDays,
-                rimmaSickDays, rimmaTrainingDays);
-        workersList.add(rimma);
-
-        // ester
-        List<Integer> esterVacationDays = new ArrayList<>();
-        List<Integer> esterDesiredVacationDays = new ArrayList<>();
-        HashMap<Integer, Shift> esterDesiredWorkDays = new HashMap<>();
-        List<Integer> esterSickDays = new ArrayList<>();
-        List<Integer> esterTrainingDays = new ArrayList<>();
-        Worker ester = new Worker(8, "Ester", 152, 1, -6, 0, esterVacationDays, esterDesiredVacationDays,
-                esterDesiredWorkDays,
-                esterSickDays, esterTrainingDays);
-        workersList.add(ester);
-
-        // laine
-        List<Integer> laineVacationDays = new ArrayList<>();
-        List<Integer> laineDesiredVacationDays = new ArrayList<>(Arrays.asList(26, 27));
-        HashMap<Integer, Shift> laineDesiredWorkDays = new HashMap<>();
-        List<Integer> laineSickDays = new ArrayList<>();
-        List<Integer> laineTrainingDays = new ArrayList<>();
-        Worker laine = new Worker(9, "Laine", 114, 0.75, 0, 0, laineVacationDays, laineDesiredVacationDays,
-                laineDesiredWorkDays,
-                laineSickDays, laineTrainingDays);
-        workersList.add(laine);
-
-        // natalja
-        List<Integer> nataljaVacationDays = new ArrayList<>();
-        List<Integer> nataljaDesiredVacationDays = new ArrayList<>(List.of(1,4,7,8,15,21,22,23,24,25,26,31));
-        HashMap<Integer, Shift> nataljaDesiredWorkDays = new HashMap<>();
-        List<Integer> nataljaSickDays = new ArrayList<>();
-        List<Integer> nataljaTrainingDays = new ArrayList<>();
-        Worker natalja = new Worker(10, "natalja", 114, 0.75, -1, 0, nataljaVacationDays, nataljaDesiredVacationDays,
-                nataljaDesiredWorkDays, nataljaSickDays, nataljaTrainingDays);
-        workersList.add(natalja);
-
-        // reelika
-        List<Integer> reelikaVacationDays = new ArrayList<>();
-        List<Integer> reelikaDesiredVacationDays = new ArrayList<>(Arrays.asList(1,14,15,20,21,22,23,24,25,26,31));
-        HashMap<Integer, Shift> reelikaDesiredWorkDays = new HashMap<>();
-        List<Integer> reelikaSickDays = new ArrayList<>();
-        List<Integer> reelikaTrainingDays = new ArrayList<>();
-        Worker reelika = new Worker(11, "reelika", 114, 0.75, 0, 0, reelikaVacationDays, reelikaDesiredVacationDays,
-                reelikaDesiredWorkDays,
-                reelikaSickDays, reelikaTrainingDays);
-        workersList.add(reelika);
-
-        // tiina
-        List<Integer> tiinaVacationDays = new ArrayList<>();
-        List<Integer> tiinaDesiredVacationDays = new ArrayList<>(Arrays.asList(3,5,6,7,8,27,28,29,31));
-        HashMap<Integer, Shift> tiinaDesiredWorkDays = new HashMap<>();
-        List<Integer> tiinaSickDays = new ArrayList<>();
-        List<Integer> tiinaTrainingDays = new ArrayList<>();
-        Worker tiina = new Worker(12, "tiina", 102, 0.75, -7, 0, tiinaVacationDays, tiinaDesiredVacationDays,
-                tiinaDesiredWorkDays,
-                tiinaSickDays, tiinaTrainingDays);
-        workersList.add(tiina);
+        // Maarika
+        List<Integer> maarikaVacationDays = new ArrayList<>();
+        List<Integer> maarikaDesiredVacationDays = new ArrayList<>();
+        HashMap<Integer, Shift> maarikaDesiredWorkDays = new HashMap<>();
+        List<Integer> maarikaSickDays = new ArrayList<>();
+        List<Integer> maarikaTrainingDays = new ArrayList<>();
+        Worker maarika = new Worker(8, "Maarika", 168, 1.0, 0, 0, maarikaVacationDays, maarikaDesiredVacationDays,
+                maarikaDesiredWorkDays, maarikaSickDays, maarikaTrainingDays);
+        workersList.add(maarika);
     }
+
 
     // Getter method for the list
     public List<Worker> getWorkersList() {

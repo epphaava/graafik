@@ -22,7 +22,7 @@ public class Quarter {
             loop:
             for (Shift[] scheduleMatrix1 : scheduleMatrix) {
                 Shift shift = scheduleMatrix1[worker.getEmployeeId()];
-                if (shift.getDuration() != 8 || (!shift.getCategory().equals(Shift.OSAKOND) && !shift.getCategory().equals(Shift.INTENSIIV)))
+                if (shift.getDuration() != 8 || (!shift.getCategory().equals(Shift.PIKK_PÄEV)))
                     continue;
 
                 int hoursBalance = worker.getQuarterBalance();

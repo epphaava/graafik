@@ -25,6 +25,7 @@ public class ChangeWorkLoads {
             int workerVacationDays = 0;
             for (int date : worker.getVacationDays()) {
                 int weekday = HelperMethods.getDay(date - 1, firstDayOfMonth);
+
                 if (weekday != 0 && weekday != 6) {
                     workerVacationDays++;
                 }

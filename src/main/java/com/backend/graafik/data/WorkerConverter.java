@@ -52,8 +52,8 @@ public class WorkerConverter {
                 Integer day = (Integer) dayData.get("day");
                 Integer duration = (Integer) dayData.get("duration");
                 // Set shift type to OSAKOND every time
-                if (name.equals("Kai")) desiredWorkDays.put(day, new Shift(duration, Shift.INTENSIIV));
-                else desiredWorkDays.put(day, new Shift(duration, Shift.OSAKOND));
+                if (name.equals("Kai")) desiredWorkDays.put(day, new Shift(duration, Shift.PIKK_PÄEV));
+                else desiredWorkDays.put(day, new Shift(duration, Shift.PIKK_PÄEV));
             }
 
             List<Integer> sickLeaveDays = (List<Integer>) workerData.get("sickLeaveDays");

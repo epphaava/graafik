@@ -1,6 +1,7 @@
 package com.backend.graafik.schedule;
 
 import com.backend.graafik.data.WorkerConverter;
+import com.backend.graafik.data.WorkersList;
 import com.backend.graafik.model.RecordedShift;
 import com.backend.graafik.model.Shift;
 import com.backend.graafik.model.Worker;
@@ -18,12 +19,13 @@ public class ScheduleCreator {
     // Case 5 --> End of quarter is +2 ?
     public static void main(String[] args) {
 
-        int daysInMonth = 31;
-        int firstDayOfMonth = 3;
-        int fullTimeHours = 176;
+        int daysInMonth = 28;
+        int firstDayOfMonth = 6;
+        int fullTimeHours = 168;
         List<Integer> holidays = new ArrayList<>(Arrays.asList(1,2,3,6));
 
-        List<Worker> workersList = WorkerConverter.createWorkersList(fullTimeHours);
+        WorkersList workersListInstance = new WorkersList();
+        List<Worker> workersList = workersListInstance.getWorkersList();
 
         List<RecordedShift> recordedShifts = new ArrayList<>();
         RecordedShift lastRecordedShift = new RecordedShift(0, workersList.getFirst(), 0);
@@ -39,7 +41,8 @@ public class ScheduleCreator {
         for (int i = 0; i < scheduleMatrix.length; i++) {
             List<Worker> workersCopy = new ArrayList<>();
             for (int j = 0; j < scheduleMatrix[i].length; j++) {
-                if (!scheduleMatrix[i][j].getCategory().equals(Shift.KEELATUD) && !scheduleMatrix[i][j].getCategory().equals(Shift.PUHKUS) && !scheduleMatrix[i][j].getCategory().equals(Shift.KOOLITUS)) workersCopy.add(workersList.get(j));
+                if (!scheduleMatrix[i][j].getCategory().equals(Shift.KEELATUD) && !scheduleMatrix[i][j].getCategory().equals(Shift.PUHKUS))
+                    workersCopy.add(workersList.get(j));
 
             }
             unusedWorkers.put(i, workersCopy);
@@ -61,11 +64,11 @@ public class ScheduleCreator {
 
 
         // Step 5 kui rahval < -8h jääk siis vaatame kuhu saab neid assginida --> ja assgnima ainult tööpäevadle sest nv olemas juba
-        AssignExtraShifts.addExtraShifts(scheduleMatrix, daysInMonth, workersList, firstDayOfMonth);
+        // EHA EI TAHA --> AssignExtraShifts.addExtraShifts(scheduleMatrix, daysInMonth, workersList, firstDayOfMonth, holidays);
 
-        // Step 6 if kvartaliviimane kuu ss lisa meetod et teha vajadusel 8h vahetus --> 10h vahetuseks
-        if (lastMonthOfQuarter) Quarter.QuarterBalance(scheduleMatrix, workersList);
-        else Month.MonthlyBalance(scheduleMatrix, workersList);
+        // Step 6 if kvartaliviimane kuu ss lisa meetod et teha vajadusel 8h vahetus --> 10h vahetuseks EHA EI TAHA
+        //if (lastMonthOfQuarter) Quarter.QuarterBalance(scheduleMatrix, workersList);
+        //else Month.MonthlyBalance(scheduleMatrix, workersList);
 
 
         // Deal with Edgecases

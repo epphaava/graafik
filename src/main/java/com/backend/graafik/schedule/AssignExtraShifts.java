@@ -20,13 +20,13 @@ public class AssignExtraShifts {
             List<Shift> todayShifts = HelperMethods.getShiftsForDay(scheduleMatrix, dayIndex);
             List<Shift> tomorrowShifts = HelperMethods.getShiftsForDay(scheduleMatrix, dayIndex + 1);
             List<Shift> dayAfterTomorrowShifts = HelperMethods.getShiftsForDay(scheduleMatrix, dayIndex + 2);
-            Shift lühikeShift = new Shift(8, Shift.INTENSIIV);
+            Shift lühikeShift = new Shift(8, Shift.LÜHIKE_PÄEV);
 
 
             assignShiftForDay(scheduleMatrix, dayIndex, todayShifts, tomorrowShifts, dayAfterTomorrowShifts, lühikeShift, filteredWorkers);
             todayShifts = HelperMethods.getShiftsForDay(scheduleMatrix, dayIndex);
 
-            lühikeShift = new Shift(8, Shift.OSAKOND);
+            lühikeShift = new Shift(8, Shift.PIKK_PÄEV);
             assignShiftForDay(scheduleMatrix, dayIndex, todayShifts, tomorrowShifts, dayAfterTomorrowShifts, lühikeShift, filteredWorkers);
             filteredWorkers = HelperMethods.FilterWorkers(filteredWorkers, -8);
         }

@@ -48,55 +48,41 @@ public class VisualizeResults {
             for (int empIndex = 0; empIndex < workers.size(); empIndex++) {
 
                 Worker employee = workers.get(empIndex);
-                List<String> shiftCategories = new ArrayList<>(Arrays.asList(Shift.INTENSIIV, Shift.OSAKOND));
 
-                for (String category : shiftCategories) {
+                StringBuilder rowString = new StringBuilder();
+                rowString.append(employee.getName()).append(",");
 
-                    StringBuilder rowString = new StringBuilder();
-                    rowString.append(employee.getName()).append(",");
 
-                    rowString.append(category).append(",");
 
-                    for (Shift[] dayShifts : matrix) {
-                        Shift shift = dayShifts[empIndex];
+                for (Shift[] dayShifts : matrix) {
+                    Shift shift = dayShifts[empIndex];
 
-                        if (category.equals(Shift.INTENSIIV)) {
-                            switch (shift.getCategory()) {
-                                case Shift.INTENSIIV -> rowString.append(shift.getDuration()).append(",");
-                                case Shift.PUHKUS -> rowString.append("P,");
-                                case Shift.SOOVI_PUHKUS -> rowString.append("D,");
-                                case Shift.KOOLITUS -> rowString.append("K,");
-                                default -> rowString.append(",");
-                            }
-                        }
-                        else if (category.equals(Shift.OSAKOND)) {
-                            switch (shift.getCategory()) {
-                                case Shift.OSAKOND -> rowString.append(shift.getDuration()).append(",");
-                                case Shift.KOOLITUS -> rowString.append(8).append(",");
-                                default -> rowString.append(",");
-                            }
-                        }
+                    switch (shift.getCategory()) {
+                        case Shift.PIKK_PÄEV, Shift.LÜHIKE_PÄEV -> rowString.append(shift.getDuration()).append(",");
+                        case Shift.PUHKUS -> rowString.append("P,");
+                        case Shift.SOOVI_PUHKUS -> rowString.append("D,");
+                        default -> rowString.append(",");
                     }
-                    
-
-
-                    int töötajaNorm = (workers.get(empIndex).getWorkLoadHours() + (workers.get(empIndex).getTrainingDays().size() * 8));
-                    int töötajaTegelikudTunnid = totalHours[empIndex];
-                    rowString.append(töötajaNorm).append(",");
-                    rowString.append(töötajaTegelikudTunnid).append(",");
-                    rowString.append(töötajaTegelikudTunnid - töötajaNorm).append(",");
-                    rowString.append(workers.get(empIndex).getLastMonthBalance()).append(",");
-                    rowString.append(workers.get(empIndex).getVacationDays().size()).append(",");
-                    rowString.append(töötajaTegelikudTunnid - töötajaNorm).append(workers.get(empIndex).getLastMonthBalance()).append(",");
-
-                    // Remove trailing comma and write the row
-                    if (rowString.length() > 0) {
-                        rowString.setLength(rowString.length() - 1);
-                    }
-                    writer.println(rowString.toString());
-
-
                 }
+
+
+
+                int töötajaNorm = (workers.get(empIndex).getWorkLoadHours() + (workers.get(empIndex).getTrainingDays().size() * 8));
+                int töötajaTegelikudTunnid = totalHours[empIndex];
+                rowString.append(töötajaNorm).append(",");
+                rowString.append(töötajaTegelikudTunnid).append(",");
+                rowString.append(töötajaTegelikudTunnid - töötajaNorm).append(",");
+                rowString.append(workers.get(empIndex).getLastMonthBalance()).append(",");
+                rowString.append(workers.get(empIndex).getVacationDays().size()).append(",");
+                rowString.append(töötajaTegelikudTunnid - töötajaNorm).append(workers.get(empIndex).getLastMonthBalance()).append(",");
+
+                // Remove trailing comma and write the row
+                if (rowString.length() > 0) {
+                    rowString.setLength(rowString.length() - 1);
+                }
+                writer.println(rowString.toString());
+
+
             }
         }
     }

@@ -30,7 +30,6 @@ public class AssignWorkerWishes {
     assignSooviTööpäevad(töötaja, scheduleMatrix);
     assignSpecificShifts(töötaja.getVacationDays(), scheduleMatrix, töötaja.getEmployeeId(), new Shift(0, Shift.PUHKUS));
     assignSpecificShifts(töötaja.getDesiredVacationDays(), scheduleMatrix, töötaja.getEmployeeId(), new Shift(0, Shift.SOOVI_PUHKUS));
-    assignSpecificShifts(töötaja.getTrainingDays(), scheduleMatrix, töötaja.getEmployeeId(), new Shift(8, Shift.KOOLITUS));
   }
 
   // Assign Vacation and desired vacation days
@@ -50,8 +49,6 @@ public class AssignWorkerWishes {
     for (Map.Entry<Integer, Shift> entry : workDays.entrySet()) {
       int day = entry.getKey() - 1; // Adjust for 0-based index
       Shift shift = entry.getValue();
-      if (day == scheduleMatrix.length - 1 && shift.getDuration() == 24)
-        shift = new Shift(16, shift.getCategory());
       scheduleMatrix[day][workerId] = shift;
     }
 

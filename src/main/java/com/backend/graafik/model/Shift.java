@@ -7,14 +7,12 @@ public class Shift {
 
 
     // Categories
-    public static final String INTENSIIV = "intensiiv";
     public static final String LÜHIKE_PÄEV = "lühike päev";
-    public static final String OSAKOND = "osakond";
+    public static final String PIKK_PÄEV = "pikk päev";
     public static final String TÜHI = "";
     public static final String PUHKUS = "P";
     public static final String SOOVI_PUHKUS = "D";
     public static final String KEELATUD = "X";
-    public static final String KOOLITUS = "K";
 
     // Constructor
     public Shift(int duration, String category) {
@@ -39,11 +37,11 @@ public class Shift {
 
     // Setter for category with validation
     public void setCategory(String category) {
-        if (category.equals(INTENSIIV) || category.equals(LÜHIKE_PÄEV) || category.equals(OSAKOND)
-                || category.equals(TÜHI) || category.equals(PUHKUS) || category.equals(SOOVI_PUHKUS) || category.equals(KEELATUD) || category.equals(KOOLITUS)) {
+        if (category.equals(LÜHIKE_PÄEV) || category.equals(PIKK_PÄEV)
+                || category.equals(TÜHI) || category.equals(PUHKUS) || category.equals(SOOVI_PUHKUS) || category.equals(KEELATUD)) {
             this.category = category;
         } else {
-            throw new IllegalArgumentException("Invalid category. Choose from: intensiiv, lühike, osakond, tühi, puhkus, soovi_puhkus, keelatud, koolitus");
+            throw new IllegalArgumentException("Invalid category. Choose from: lühike, pikk, tühi, puhkus, soovi_puhkus, keelatud");
         }
     }
 
