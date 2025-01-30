@@ -85,19 +85,28 @@ public class HelperMethods {
 
 
             List<Worker> workersCopy = new ArrayList<>();
-            if (scheduleMatrixOriginal.length > recorded.getShiftDate()) {
+
+            if (scheduleMatrixOriginal.length > recorded.getShiftDate() + 1) {
                 for (int i = 0; i < scheduleMatrixOriginal[recorded.getShiftDate() + 1].length; i++) {
+
                     if (!scheduleMatrixOriginal[recorded.getShiftDate() + 1][i].getCategory().equals(Shift.KEELATUD) && !scheduleMatrix[recorded.getShiftDate() + 1][i].getCategory().equals(Shift.PUHKUS))
                         workersCopy.add(workers.get(i));
+                    unusedWorkers.put(recorded.getShiftDate() + 1, workersCopy);
                 }
             }
 
-            unusedWorkers.put(recorded.getShiftDate() + 1, workersCopy);
+            for (int j = 0; j < scheduleMatrix.length; j++) {
+                for (int i = recorded.getShiftDate() + 1; i < scheduleMatrix[j].length; i++) {
+                        scheduleMatrix[j][i] = scheduleMatrixOriginal[j][i];
+                }
+            }
+
+
             removeShiftFromDay(scheduleMatrix, scheduleMatrixOriginal, recorded);
-            return recorded.getShiftDate();
+            return recorded.getShiftDate() -1;
 
         }
-        return -1;
+        return -2;
     }
 
 }

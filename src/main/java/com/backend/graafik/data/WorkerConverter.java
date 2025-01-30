@@ -59,7 +59,7 @@ public class WorkerConverter {
             List<Integer> sickLeaveDays = (List<Integer>) workerData.get("sickLeaveDays");
             List<Integer> trainingDays = (List<Integer>) workerData.get("trainingDays");
 
-            Worker worker = new Worker(employeeId, name, workLoadHours, workLoad, hoursBalance, lastMonthLastDayHours, vacationDays, desiredVacationDays, desiredWorkDays, sickLeaveDays, trainingDays);
+            Worker worker = new Worker(employeeId, name, workLoadHours, workLoad, hoursBalance, lastMonthLastDayHours, vacationDays, desiredVacationDays, desiredWorkDays, sickLeaveDays, trainingDays, new ArrayList<>());
             workerObjects.add(worker);
         }
 

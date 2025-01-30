@@ -20,8 +20,9 @@ public class Worker {
     List<Integer> trainingDays;
     int numOf24hShifts;
     Integer initialBalance;
+    List<Shift> allowedShifts;
 
-    public Worker(int employeeId, String name, int workLoadHours, double workLoad, Integer quarterBalance, int lastMonthLastDayHours, List<Integer> vacationDays, List<Integer> desiredVacationDays, HashMap<Integer, Shift> desiredWorkDays, List<Integer> sickLeaveDays, List<Integer> trainingDays) {
+    public Worker(int employeeId, String name, int workLoadHours, double workLoad, Integer quarterBalance, int lastMonthLastDayHours, List<Integer> vacationDays, List<Integer> desiredVacationDays, HashMap<Integer, Shift> desiredWorkDays, List<Integer> sickLeaveDays, List<Integer> trainingDays, List<Shift> allowedShifts) {
         this.employeeId = employeeId;
         this.name = name;
         this.workLoadHours = workLoadHours;
@@ -35,10 +36,11 @@ public class Worker {
         this.sickLeaveDays = sickLeaveDays;
         this.trainingDays = trainingDays;
 
-        if (workLoad == 1.0) this.numOf24hShifts = 5;
-        else this.numOf24hShifts = 4;
+        if (workLoad == 1.0) this.numOf24hShifts = 10;
+        else this.numOf24hShifts = 10;
 
         this.initialBalance = quarterBalance;
+        this.allowedShifts = allowedShifts;
     }
 
     public int getEmployeeId() {
@@ -151,6 +153,14 @@ public class Worker {
 
     public Integer getInitialBalance() {
         return initialBalance;
+    }
+
+    public List<Shift> getAllowedShifts() {
+        return allowedShifts;
+    }
+
+    public void setAllowedShifts(List<Shift> allowedShifts) {
+        this.allowedShifts = allowedShifts;
     }
 
     @Override
