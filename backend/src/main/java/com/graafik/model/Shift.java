@@ -27,6 +27,8 @@ public class Shift {
         return duration;
     }
 
+    public List<Rule> getRules() { return rules; }
+
     // Setters
     public void setType(String type) {
         this.type = type;
