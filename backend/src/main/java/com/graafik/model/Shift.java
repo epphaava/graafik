@@ -16,7 +16,7 @@ public class Shift {
     List<Rule> rules;
 
     // No-args constructor (required for Jackson deserialization)
-    public ShiftDto() {}
+    public Shift() {}
 
     // Getters
     public String getType() {

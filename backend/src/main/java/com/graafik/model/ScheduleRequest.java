@@ -10,7 +10,7 @@ public class ScheduleRequest {
     private List<WorkerDto> workers;
 
     @JsonProperty("shifts")
-    private List<ShiftDto> shifts;
+    private List<Shift> shifts;
 
     @JsonProperty("rules")
     private List<Rule> rules;
@@ -29,7 +29,7 @@ public class ScheduleRequest {
         return workers;
     }
 
-    public List<ShiftDto> getShifts() {
+    public List<Shift> getShifts() {
         return shifts;
     }
 
@@ -50,7 +50,7 @@ public class ScheduleRequest {
         this.workers = workers;
     }
 
-    public void setShifts(List<ShiftDto> shifts) {
+    public void setShifts(List<Shift> shifts) {
         this.shifts = shifts;
     }
 
